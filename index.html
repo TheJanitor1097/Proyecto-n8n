@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte Ciudadano - Incidentes Urbanos</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Reporte de Incidentes Urbanos</h1>
+        <p>Los campos de Ticket ID, Fecha, Prioridad y Estado se generarán automáticamente.</p>
+    </div>
+
+    <form id="reporteForm" enctype="multipart/form-data">
+        
+        <div class="form-group">
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+        </div>
+
+        <div class="form-group">
+            <label for="telefono">Teléfono de Contacto</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="Ej. +57 300 123 4567" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tipo_incidente">Tipo de Incidente Inicial</label>
+            <select id="tipo_incidente" name="tipo_incidente" required>
+                <option value="" disabled selected>Selecciona una opción...</option>
+                <option value="Bache / Hueco">Bache / Hueco en la vía</option>
+                <option value="Luminaria Fundida">Luminaria / Alumbrado público dañado</option>
+                <option value="Semáforo Averiado">Semáforo averiado</option>
+                <option value="Fuga de Agua">Fuga de agua potable o alcantarillado</option>
+                <option value="Otro">Otro (Especificar en la descripción)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="direccion">Dirección Aproximada / Referencia</label>
+            <input type="text" id="direccion" name="direccion" placeholder="Ej. Calle 45 #23-10, frente al parque" required>
+        </div>
+
+        <div class="form-group">
+            <label for="foto_dano">Fotografía del Daño (Para análisis de IA)</label>
+            <input type="file" id="foto_dano" name="foto_dano" accept="image/*" required>
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción de la Situación</label>
+            <textarea id="descripcion" name="descripcion" placeholder="Detalla el problema para ayudar a la IA..." required></textarea>
+        </div>
+
+        <div class="geo-container">
+            <label>Ubicación del Incidente</label>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
+                Usa el botón para activar tu GPS o haz clic/arrastra el marcador en el mapa para ajustar el punto exacto.
+            </p>
+            <button type="button" id="btnGeo" class="btn-geo">
+                📍 Activar mi GPS Actual
+            </button>
+            
+            <div id="map"></div>
+            
+            <div id="geo-status" class="geo-status">Coordenadas no capturadas aún.</div>
+        </div>
+
+        <div class="hidden-fields">
+            <input type="text" id="latitud" name="latitud" required>
+            <input type="text" id="longitud" name="longitud" required>
+        </div>
+
+        <button type="submit" id="btnSubmit" class="btn-submit">Enviar Reporte Ciudadano</button>
+    </form>
+
+    <div id="form-message" class="message-box hidden"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
