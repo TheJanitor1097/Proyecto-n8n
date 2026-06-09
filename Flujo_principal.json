@@ -1,0 +1,774 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "table-inf",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1056,
+        -32
+      ],
+      "id": "7ac35fae-654c-4251-bb3d-67f7cf21fc01",
+      "name": "Webhook",
+      "webhookId": "6603280c-5a17-4f37-a184-023efd3e2bb5",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1guQWfrmv9OBSQcLKBhIF5_RhQNoqdM0zqdJ3FtzifX0/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1guQWfrmv9OBSQcLKBhIF5_RhQNoqdM0zqdJ3FtzifX0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Ticket ID": "=SCF-{{$now.toFormat('yyyyMMddHHmmss')}}",
+            "Nombre": "={{ $('Edit Fields').item.json.body.nombre }}",
+            "Teléfono": "={{ $('Edit Fields').item.json.body.telefono }}",
+            "Descripcion": "={{ $('Edit Fields').item.json.body.descripcion }}",
+            "Latitud": "={{ $('Edit Fields').item.json.body.latitud }}",
+            "Longitud": "={{ $('Edit Fields').item.json.body.longitud }}",
+            "Fecha": "={{$now}}",
+            "Prioridad": "={{ $('Code in JavaScript').item.json.prioridad }}",
+            "Confianza": "={{ $('Code in JavaScript').item.json.confianza }}",
+            "Categoria": "={{ $('Code in JavaScript').item.json.categoria }}",
+            "Estado": "={{ $json.Estado }}",
+            "Notificado": "={{ $('Edit Fields').item.json.Notificado }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Ticket ID",
+              "displayName": "Ticket ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Teléfono",
+              "displayName": "Teléfono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Descripcion",
+              "displayName": "Descripcion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Latitud",
+              "displayName": "Latitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Longitud",
+              "displayName": "Longitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Categoria",
+              "displayName": "Categoria",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Prioridad",
+              "displayName": "Prioridad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Confianza",
+              "displayName": "Confianza",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Chat ID Telegram",
+              "displayName": "Chat ID Telegram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Notificado",
+              "displayName": "Notificado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Ultimo Estado Notificado",
+              "displayName": "Ultimo Estado Notificado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1232,
+        0
+      ],
+      "id": "bc66305b-5f28-4203-b611-95155b4149b4",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "agFIabo6uZDUm12w",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4f91aa4a-4e4a-4b69-ad8c-838e490ade9f",
+              "name": "=SCF-{{$now.toFormat('yyyyMMddHHmmss')}}",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "3411e63d-c661-4a57-b756-855e454b236e",
+              "name": "={{$now}}",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "2e05295b-cb67-462c-92cf-b92b4f583e9c",
+              "name": "Notificado",
+              "value": "No",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -816,
+        -32
+      ],
+      "id": "355e5ad6-e272-41ed-9aa6-303cb9174045",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "text": "=Eres un inspector experto en infraestructura urbana.\n\nAnaliza la imagen adjunta y la información proporcionada.\n\nTipo reportado:\n{{ $('Edit Fields').item.json.body.tipo_incidente }}\n\nDescripción:\n{{ $('Edit Fields').item.json.body.descripcion }}\n\nDirección:\n{{ $('Edit Fields').item.json.body.direccion }}{{ $('Edit Fields').item.json.body.latitud }}{{ $('Edit Fields').item.json.body.longitud }}\n\nTu tarea es:\n\n1. Verificar si la imagen corresponde a infraestructura urbana.\n2. Determinar si el daño reportado coincide con la imagen.\n3. Identificar riesgos en la descripción.\n4. Clasificar el incidente.\n5. Asignar una prioridad.(Alta,Media,Baja)\n6. Calcular un porcentaje de confianza.\n\nResponde únicamente con JSON válido:\n\n{\n  \"infraestructura_valida\": true,\n  \"categoria\": \"\",\n  \"riesgos_detectados\": [],\n  \"prioridad\": \"\",\n  \"confianza\": 0,\n  \"justificacion\": \"\"\n}",
+        "inputType": "binary",
+        "binaryPropertyName": "foto_dano",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        192,
+        -32
+      ],
+      "id": "08922dbd-d269-4a0f-875d-f37a0f7536e4",
+      "name": "Analyze an image",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "b3eRV5isdhUSBgk3",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const texto = $json.content.parts[0].text;\n\n// quitar ```json y ```\nconst limpio = texto\n  .replace(/```json/g, '')\n  .replace(/```/g, '')\n  .trim();\n\nconst resultado = JSON.parse(limpio);\n\nreturn [{\n  json: {\n    ...resultado\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        368,
+        -32
+      ],
+      "id": "f70b8940-4ae8-4726-a3bb-24022dfcdd7d",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "b311b43d-b832-45bc-945c-176af65cf29e",
+              "leftValue": "={{ $json.prioridad }}",
+              "rightValue": "=Alta",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "f0ac5da1-2ba9-4bb4-b053-145e4d1899ae",
+              "leftValue": "={{ $json.confianza }}",
+              "rightValue": 85,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        544,
+        -32
+      ],
+      "id": "4693688a-612b-4cf5-8aad-975d46df7c69",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a4df30e2-2318-45f4-bd59-b47a3ad3bb98",
+              "leftValue": "={{ $('Code in JavaScript').item.json.confianza }}",
+              "rightValue": 50,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            },
+            {
+              "id": "7111f9f8-6cd3-4dbd-b54e-2e51e22d8bc4",
+              "leftValue": "={{ $('Code in JavaScript').item.json.infraestructura_valida }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        736,
+        96
+      ],
+      "id": "5e573dc3-b039-49eb-9f3b-364975af73cc",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8b53163b-fa28-4afb-8fde-72fa50692ed8",
+              "name": "=Estado",
+              "value": "En Asignación",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        944,
+        -160
+      ],
+      "id": "1d87a2fe-3b53-4de5-90e8-7695e04ce5a5",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bc502d41-1d0b-4cd5-8dbf-a7864ad44f98",
+              "name": "=Estado",
+              "value": "Solicitud de Evidencia Adicional",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        944,
+        0
+      ],
+      "id": "0f1ec0db-6bd9-4221-8ef7-e68c3186de6c",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bc5b5a7f-ea9e-426d-8190-8dfb51ff4d65",
+              "name": "=Estado",
+              "value": "Pendiente de Revisión",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        944,
+        176
+      ],
+      "id": "91dddda3-9fb8-414a-92f3-26d857611412",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "chatId": "5208673145",
+        "text": "=🚨 Nuevo Reporte Urbano\n\n🎫 Ticket: SCF-{{$now.toFormat('yyyyMMddHHmmss')}}\n\n📍 Dirección: https://maps.google.com/?q={{ $json.Latitud }},{{$json.Longitud}}\n\n📂 Categoría: {{ $('Edit Fields').item.json.body.tipo_incidente }}\n\n⚠️ Prioridad: {{ $json.Prioridad }}\n\n📊 Confianza: {{ $json.Confianza }}%\n\n📌 Estado: {{ $json.Estado }}\n\n📝 Descripción: {{ $json.Descripcion }}\n\nSi quieres consultar el estado de tu reporte utiliza \"/Estado SCF-12345678912345\" con tu Ticket",
+        "replyMarkup": "=None",
+        "forceReply": {},
+        "replyKeyboardOptions": {},
+        "replyKeyboardRemove": {},
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1440,
+        0
+      ],
+      "id": "ab2bb7c8-a5db-4793-8938-cb5f8decd4d0",
+      "name": "Send a text message",
+      "webhookId": "3e24d991-7006-452e-9e13-5cf6345b0cee",
+      "credentials": {
+        "telegramApi": {
+          "id": "sZOBdoNp4E1K8U6d",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1guQWfrmv9OBSQcLKBhIF5_RhQNoqdM0zqdJ3FtzifX0",
+          "mode": "list",
+          "cachedResultName": "Formdamage",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1guQWfrmv9OBSQcLKBhIF5_RhQNoqdM0zqdJ3FtzifX0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1guQWfrmv9OBSQcLKBhIF5_RhQNoqdM0zqdJ3FtzifX0/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -480,
+        -32
+      ],
+      "id": "8f6dabed-4182-4530-81bd-0b4f064d6052",
+      "name": "Get row(s) in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "agFIabo6uZDUm12w",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const nuevaLat = parseFloat($('Webhook').first().json.body.Latitud);\nconst nuevaLon = parseFloat($('Webhook').first().json.body.Longitud);\n\nfunction distanciaMetros(lat1, lon1, lat2, lon2) {\n  const R = 6371000;\n\n  const dLat = (lat2 - lat1) * Math.PI / 180;\n  const dLon = (lon2 - lon1) * Math.PI / 180;\n\n  const a =\n    Math.sin(dLat / 2) * Math.sin(dLat / 2) +\n    Math.cos(lat1 * Math.PI / 180) *\n    Math.cos(lat2 * Math.PI / 180) *\n    Math.sin(dLon / 2) * Math.sin(dLon / 2);\n\n  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));\n\n  return R * c;\n}\n\nlet duplicado = false;\nlet distanciaEncontrada = null;\n\nfor (const item of $input.all()) {\n\n  const lat = parseFloat(item.json.Latitud);\n  const lon = parseFloat(item.json.Longitud);\n\n  if (isNaN(lat) || isNaN(lon)) continue;\n\n  const distancia = distanciaMetros(\n    nuevaLat,\n    nuevaLon,\n    lat,\n    lon\n  );\n\n  if (distancia <= 20) {\n    duplicado = true;\n    distanciaEncontrada = distancia;\n    break;\n  }\n}\n\nreturn [{\n  json: {\n    duplicado,\n    distancia: distanciaEncontrada\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -304,
+        -32
+      ],
+      "id": "3258048b-256c-4169-90ef-d1a26cd70cb8",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "57457519-af44-49af-840a-c6f38cfc5d12",
+              "leftValue": "={{ $json.duplicado }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -112,
+        -32
+      ],
+      "id": "a0540866-85a0-463b-84ee-d2fbe7911a02",
+      "name": "If4"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -16,
+        320
+      ],
+      "id": "48f4a9d8-3ba7-4a8f-8173-deaf7f2e9d94",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"ticketId\": \"{{ $('Append row in sheet').item.json['Ticket ID'] }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1600,
+        0
+      ],
+      "id": "84fc0459-0046-422b-87d8-6a57dcfebf31",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get row(s) in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze an image": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Analyze an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "09a289faec55ac57e43b59306805ced8089ac066c6ebe63b0611eddba14967c1"
+  }
+}
