@@ -96,45 +96,51 @@ function mostrarStatus(texto, color) {
 }
 
 
-// --- FUNCIÓN: ENVÍO ASÍNCRONO A N8N ---
+// --- FUNCIÓN: ENVÍO ASÍNCRONO A N8N (FETCH ACTUALIZADO) ---
 async function enviarFormulario(event) {
-    event.preventDefault();
+    event.preventDefault(); // Evita que la página se recargue automáticamente
 
-    if (!latInput.value || !latInput.value == LAT_POR_DEFECTO) {
-        // Validación opcional por si quieres obligar a que cambien las coordenadas por defecto
-    }
-
+    // Validación de seguridad: Verificar si el usuario capturó las coordenadas primero
     if (!latInput.value || !lonInput.value) {
-        mostrarMensaje("Por favor, selecciona una ubicación en el mapa antes de enviar.", "error");
+        mostrarMensaje("Por favor, captura tu ubicación antes de enviar el reporte.", "error");
         return;
     }
 
+    // Bloquear controles mientras se procesa el envío
     btnSubmit.disabled = true;
     btnSubmit.textContent = "Enviando reporte de incidente...";
     ocultarMensaje();
 
+    // Empaquetar automáticamente todos los inputs del HTML
     const formData = new FormData(form);
 
     try {
         const response = await fetch(N8N_WEBHOOK_URL, {
             method: 'POST',
-            body: formData
+            body: formData // Envía los datos estructurados
         });
 
         if (response.ok) {
-            mostrarMensaje("¡Reporte enviado con éxito! El sistema está procesando el caso.", "success");
-            form.reset();
-            // Resetear el mapa a su estado inicial
-            map.setView([LAT_POR_DEFECTO, LON_POR_DEFECTO], 13);
-            marcador.setLatLng([LAT_POR_DEFECTO, LON_POR_DEFECTO]);
+            // ¡AQUÍ ESTÁ EL CAMBIO CRUCIAL! 
+            // Leemos la respuesta de n8n esperando un formato JSON como: { "id": "TK-12345" }
+            const resultado = await response.json();
+            
+            // Si n8n nos devuelve un campo id, lo usamos; si no, ponemos uno por defecto
+            const ticketId = resultado.id || "Generando...";
+
+            // Mostramos el mensaje exacto que solicitaste
+            mostrarMensaje(`Tu pedido fue enviado, esta es tu id: ${ticketId}`, "success");
+            
+            form.reset(); // Limpia el formulario para un nuevo reporte
             mostrarStatus("Coordenadas no capturadas aún.", "var(--text-muted)");
         } else {
-            throw new Error(`Error: ${response.status}`);
+            throw new Error(`Error en el servidor de n8n: ${response.status}`);
         }
     } catch (error) {
         console.error("Error al conectar con n8n:", error);
         mostrarMensaje("Hubo un problema de conexión al enviar el reporte. Inténtalo de nuevo.", "error");
     } finally {
+        // Desbloquear el botón de envío
         btnSubmit.disabled = false;
         btnSubmit.textContent = "Enviar Reporte Ciudadano";
     }
